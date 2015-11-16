@@ -89,3 +89,8 @@ instance MonadHaskeline m => MonadHaskeline (StateT s m) where
     outputStr = lift . outputStr
     outputStrLn = lift . outputStrLn
 
+-- From haskeline source
+instance MonadException m => MonadException (StateT s m) where
+    controlIO f = StateT $ \s -> controlIO $ \(RunIO run) -> let
+                    run' = RunIO (fmap (StateT . const) . run . flip runStateT s)
+                    in fmap (flip runStateT s) $ f run'

@@ -32,6 +32,9 @@ Build-Type:             Simple
 Cabal-Version:          >= 1.2
 
 Library
-  Build-Depends:        haskeline >= 0.6, haskeline < 0.7, base >= 3, base < 5, mtl >= 1.1, mtl < 1.2
+  Build-Depends:        haskeline >= 0.6 &&  < 0.8
+                      , base >= 3 && < 5
+                      -- , mtl >= 1.1 && < 1.2
+                      , mtl >= 1.1 && < 2.3
 
   Exposed-modules:      System.Console.Haskeline.Class
